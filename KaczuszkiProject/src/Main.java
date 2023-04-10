@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+
 
 public class Main {
 
-
     public static void main(String[] args) {
+
         int numberOfDucks = 20;
         int maxWidth = 50;
 
@@ -13,7 +12,6 @@ public class Main {
         int[] widthsArray = new int[]{2, 4, 6, 1, 5, 3, 7, 9, 2, 4, 6, 8, 3, 5, 7, 1, 2, 4, 6, 8,};
         int[][] A = new int[numberOfDucks + 1][];
 
-        A = new int[numberOfDucks + 1][];
         for (int i = 0; i < numberOfDucks + 1; i++) {
             A[i] = new int[maxWidth + 1];
         }
@@ -41,6 +39,8 @@ public class Main {
         }*/
 
     }
+
+    // Method to find the set of taken items
     private static void traceResult(int[][] A, int[] weight, int k, int s, ArrayList<Integer> result) {
         if (A[k][s] == 0) {
             return;
