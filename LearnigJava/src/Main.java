@@ -3,6 +3,8 @@ import basicExamples.CallbackTest;
 import basicExamples.Generics1;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,5 +15,7 @@ public class Main {
         System.out.println(coll);
         Generics1.swapInCollection(coll,1,2);
         System.out.println(coll);
+
+        Queue<Integer> a = new LinkedList<Integer>();
     }
 }
