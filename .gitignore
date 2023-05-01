@@ -1,6 +1,8 @@
 **/target/
+**/out/
 /target/
 */target/*
+*/out/*
 .classpath
 .project
 .settings
