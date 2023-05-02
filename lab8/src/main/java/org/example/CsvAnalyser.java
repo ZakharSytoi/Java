@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CsvAnalyser {
-    File path;
-    HashMap<String, Double> transactions;
+    private final File path;
+    private final HashMap<String, Double> transactions;
 
     public static CsvAnalyser getCsvAnalyser(String path) {
         File tmpPath = new File(path);
