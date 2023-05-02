@@ -4,6 +4,18 @@
   <groupId>org.example</groupId>
   <artifactId>lab8</artifactId>
   <packaging>jar</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>17</source>
+          <target>17</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <version>1.0-SNAPSHOT</version>
   <name>lab8</name>
   <url>http://maven.apache.org</url>
