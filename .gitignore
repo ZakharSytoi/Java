@@ -1,8 +1,10 @@
 **/target/
 **/out/
+**/test/
 /target/
 */target/*
 */out/*
+*/test/*
 .classpath
 .project
 .settings
