@@ -23,7 +23,6 @@ public class CsvAnalyser {
         try (FileInputStream fis = new FileInputStream(path)) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
             String tmpTransaction;
-            boolean skipFirstLineFlag = true;
             while ((tmpTransaction = reader.readLine()) != null) {
                     try{
                         transactions.put(tmpTransaction.replace(",", " "), Double.parseDouble(tmpTransaction.split(",")[4]));

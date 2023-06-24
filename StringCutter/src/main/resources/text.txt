@@ -1,0 +1,9 @@
+1:   public class MathFunctions {
+2:   public static void addToInt(int x, int amountToAdd) {
+3:     x = x + amountToAdd;
+4:   }
+5:   public static void main(String[] args) {
+6:     int a = 15;
+7:     int b = 10;
+8:     MathFunctions.addToInt(a, b);
+9:     System.out.println(a);  } }
