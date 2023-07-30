@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<a href="/"><h3 align="left" >Home</h3></a>
+<div align="center">
+    <img th:src="@{/images/smallTacoLogo.png}"/>
+</div>
+
+<br/><br/><br/>
+<form method="POST" th:object = "${user}">
+    <div align="center">
+        <label> Name </label>
+        <input type="text" th:field="*{name}" id = name/>
+
+        <br/>
+        <label> Surname </label>
+        <input type="text" th:field="*{surname}" id = surname/>
+
+        <br/>
+        <label> email </label>
+        <input type="text" th:field="*{email}" id = email/>
+
+        <br/>
+        <label> password </label>
+        <input type="text" th:field="*{password}" id = password/>
+        <br/>
+        <br/>
+        <input type="submit" value="Register">
+    </div>
+</form>
+
+<h1>Registered users:</h1>
+
+    <div th:each="user : ${users.usersList}">
+        <span th:text="${user.name}">USER name</span><br/>
+        <span th:text="${user.surname}">USER surname</span><br/>
+        <span th:text="${user.email}">USER email</span><br/>
+        <span th:text="${user.password}">USER password</span><br/>
+        <br/>
+        <br/>
+
+
+</div>
+
+
+</body>
+</html>
