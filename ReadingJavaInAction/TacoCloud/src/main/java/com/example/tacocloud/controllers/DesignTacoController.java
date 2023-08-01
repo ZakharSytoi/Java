@@ -4,9 +4,11 @@ import com.example.tacocloud.ingredient.Ingredient;
 import com.example.tacocloud.ingredient.IngredientType;
 import com.example.tacocloud.taco.Taco;
 import com.example.tacocloud.tacoOrder.TacoOrder;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
     @ModelAttribute
-    public void addIngredientsToModel(Model model){
+    public void addIngredientsToModel(Model model) {
         List<Ingredient> ingredients = Arrays.asList(
                 new Ingredient("FLTO", "Flour Tortilla", IngredientType.WRAP),
                 new Ingredient("COTO", "Corn Tortilla", IngredientType.WRAP),
@@ -32,39 +34,44 @@ public class DesignTacoController {
                 new Ingredient("SLSA", "Salsa", IngredientType.SAUCE),
                 new Ingredient("SRCR", "Sour Cream", IngredientType.SAUCE)
         );
-        for (IngredientType type: IngredientType.values()){
+        for (IngredientType type : IngredientType.values()) {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByIngredientType(ingredients, type));
         }
     }
 
     @ModelAttribute(name = "tacoOrder")
-    public TacoOrder order(){
+    public TacoOrder order() {
         return new TacoOrder();
     }
 
     @ModelAttribute(name = "taco")
-    public Taco taco(){
+    public Taco taco() {
         return new Taco();
     }
 
     @GetMapping()
-    public String showDesignForm(){
+    public String showDesignForm() {
         return "design";
     }
 
     @PostMapping
-    public String processTaco(Taco taco,
+    public String processTaco(@Valid Taco taco, Errors error,
                               @ModelAttribute TacoOrder tacoOrder) {
+        if (error.hasErrors()) {
+            log.info(error.toString());
+            return "design";
+        }
         tacoOrder.addTaco(taco);
+
         log.info("Processing taco: {}", taco);
         return "redirect:/orders/current";
     }
 
-    private List<Ingredient> filterByIngredientType(List<Ingredient> ingredientList, IngredientType type){
+    private List<Ingredient> filterByIngredientType(List<Ingredient> ingredientList, IngredientType type) {
         return ingredientList
                 .stream()
-                .filter(element-> element.getType().equals(type))
+                .filter(element -> element.getType().equals(type))
                 .collect(Collectors.toList());
     }
 }
