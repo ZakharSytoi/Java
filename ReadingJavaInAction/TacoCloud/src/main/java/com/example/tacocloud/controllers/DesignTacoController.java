@@ -48,7 +48,7 @@ public class DesignTacoController {
         return new Taco();
     }
 
-    @GetMapping("")
+    @GetMapping()
     public String showDesignForm(){
         return "design";
     }
