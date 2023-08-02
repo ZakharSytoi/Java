@@ -1,15 +1,23 @@
 package com.example.tacocloud.tacoOrder;
 
 import com.example.tacocloud.taco.Taco;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
-public class TacoOrder {
+@Entity
+public class TacoOrder implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @NotBlank
     private String deliveryName;
     @NotBlank
@@ -27,9 +35,10 @@ public class TacoOrder {
     private String ccExpiration;
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
-    @NotNull
     @Size(min = 1, message = "Create at least one taco please.")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();
+    private Date placedAt;
 
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
